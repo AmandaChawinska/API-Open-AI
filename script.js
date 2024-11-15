@@ -91,7 +91,7 @@ function generateTemplate() {
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Pusty szablon</title>
+      <title>Szablon</title>
       <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
       <style>
           .article-container {
@@ -118,6 +118,14 @@ function generateTemplate() {
   return template;
 }
 
+function generatePreview(articleContent) {
+  const template = generateTemplate();
+  return template.replace(
+    "<!-- Tutaj wklej zawartość artykułu -->",
+    articleContent
+  );
+}
+
 async function main() {
   try {
     console.log("Rozpoczynam pobieranie artykułu...");
@@ -133,6 +141,11 @@ async function main() {
     const template = generateTemplate();
     fs.writeFileSync("szablon.html", template, "utf8");
     console.log("Pomyślnie zapisano plik szablon.html");
+
+    console.log("Generuję podgląd...");
+    const preview = generatePreview(generatedHtml);
+    fs.writeFileSync("podglad.html", preview, "utf8");
+    console.log("Pomyślnie zapisano plik podglad.html");
 
     console.log("Zadanie wykonane pomyślnie!");
   } catch (error) {
