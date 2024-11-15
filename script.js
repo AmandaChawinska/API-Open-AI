@@ -85,6 +85,39 @@ function saveHtmlToFile(htmlContent) {
   }
 }
 
+function generateTemplate() {
+  const template = `<!DOCTYPE html>
+  <html lang="pl">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Pusty szablon</title>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <style>
+          .article-container {
+              max-width: 800px;
+          }
+          h1 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+          h2 { font-size: 2rem; margin: 2rem 0 1rem; }
+          h3 { font-size: 1.75rem; margin: 1.5rem 0 1rem; }
+          p { margin-bottom: 1rem; line-height: 1.6; }
+          img { max-width: 100%; height: auto; margin: 1.5rem 0; }
+          figure { margin: 2rem 0; }
+          figcaption { text-align: center; font-style: italic; margin-top: 0.5rem; }
+          ul, ol { margin: 1rem 0; padding-left: 2rem; }
+          li { margin-bottom: 0.5rem; }
+      </style>
+  </head>
+  <body class="bg-gray-50">
+      <main class="article-container bg-white shadow-lg rounded-lg my-5 mx-auto p-8 max-w-[800px]">
+          <!-- Tutaj wklej zawartość artykułu -->
+      </main>
+  </body>
+  </html>`;
+
+  return template;
+}
+
 async function main() {
   try {
     console.log("Rozpoczynam pobieranie artykułu...");
@@ -95,6 +128,11 @@ async function main() {
 
     console.log("Zapisuję wygenerowany HTML...");
     saveHtmlToFile(generatedHtml);
+
+    console.log("Generuję szablon...");
+    const template = generateTemplate();
+    fs.writeFileSync("szablon.html", template, "utf8");
+    console.log("Pomyślnie zapisano plik szablon.html");
 
     console.log("Zadanie wykonane pomyślnie!");
   } catch (error) {
