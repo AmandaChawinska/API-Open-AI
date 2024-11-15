@@ -35,6 +35,7 @@ async function processArticleWithAI(articleText) {
   4. Pod każdą grafiką umieść podpis używając tagu <figcaption> wewnątrz <figure>
   5. BARDZO WAŻNE: Nie dodawaj tagów <!DOCTYPE>, <html>, <head>, <body> ani żadnego kodu CSS/JavaScript. Nie opakowuj treści w żaden dodatkowy <div> tylko <article>
   6. Zwróć TYLKO zawartość, która powinna znaleźć się wewnątrz znacznika <body>
+  7. Nie używaj znaczników formatowania markdown (np. \`\`\`html)
   
   Oto artykuł do przetworzenia:
   
@@ -63,6 +64,9 @@ async function processArticleWithAI(articleText) {
     }
 
     let htmlContent = response.choices[0].message.content.trim();
+
+    htmlContent = htmlContent.replace(/```html\n?/g, "");
+    htmlContent = htmlContent.replace(/```\n?/g, "");
 
     return htmlContent;
   } catch (error) {
