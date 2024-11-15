@@ -13,4 +13,4 @@ How to use the project:
 
 - Clone the repository or download the Zip
 - Install dependencies: npm install
-- Launch "node.script.js"
+- Launch "node script.js"
