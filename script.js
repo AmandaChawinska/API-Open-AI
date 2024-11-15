@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
-
+import fetch from "node-fetch";
+import fs from "fs";
 import { OpenAI } from "openai";
 
 dotenv.config();
@@ -71,6 +72,15 @@ async function processArticleWithAI(articleText) {
   }
 }
 
+function saveHtmlToFile(htmlContent) {
+  try {
+    fs.writeFileSync("artykul.html", htmlContent, "utf8");
+    console.log("Pomyślnie zapisano plik artykul.html");
+  } catch (error) {
+    throw new Error(`Błąd podczas zapisywania pliku: ${error.message}`);
+  }
+}
+
 async function main() {
   try {
     console.log("Rozpoczynam pobieranie artykułu...");
@@ -78,6 +88,11 @@ async function main() {
 
     console.log("Przetwarzam artykuł przez OpenAI...");
     const generatedHtml = await processArticleWithAI(articleText);
+
+    console.log("Zapisuję wygenerowany HTML...");
+    saveHtmlToFile(generatedHtml);
+
+    console.log("Zadanie wykonane pomyślnie!");
   } catch (error) {
     console.error("Wystąpił błąd podczas wykonywania programu:", error.message);
     process.exit(1);
