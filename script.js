@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import fetch from "node-fetch";
+// import fetch from "node-fetch";
 import fs from "fs";
 import { OpenAI } from "openai";
 
