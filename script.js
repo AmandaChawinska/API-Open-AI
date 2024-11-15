@@ -1,5 +1,4 @@
 import dotenv from "dotenv";
-// import fetch from "node-fetch";
 import fs from "fs";
 import { OpenAI } from "openai";
 
@@ -36,6 +35,7 @@ async function processArticleWithAI(articleText) {
   5. BARDZO WAŻNE: Nie dodawaj tagów <!DOCTYPE>, <html>, <head>, <body> ani żadnego kodu CSS/JavaScript. Nie opakowuj treści w żaden dodatkowy <div> tylko <article>
   6. Zwróć TYLKO zawartość, która powinna znaleźć się wewnątrz znacznika <body>
   7. Nie używaj znaczników formatowania markdown (np. \`\`\`html)
+  8. Ostatni element niech będzie <em>
   
   Oto artykuł do przetworzenia:
   
